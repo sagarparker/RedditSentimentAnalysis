@@ -1,0 +1,56 @@
+.mainDiv{
+  overflow: hidden;
+  height: 100vh;
+  overflow-y: hidden!important;
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  width: 100vw;
+  height: 95vh;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formHolder{
+  background-color: #5b5f66;
+  padding: 30px;
+  height: 55vh;
+  width: 35vw;
+  border-radius: 30px;
+}
+
+#inputField{
+  width: 80%;
+  padding: 15px 20px 15px 20px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  font-size:1.0rem;
+  border:none;
+  outline:none!important;
+  margin-bottom: 10vh;
+}
+
+#submitBtn{
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 20%;
+  padding: 15px 25px 15px 20px;
+  border:none;
+  background-color: #282c34;
+  color:white;
+  font-weight: bold;
+  font-size:1.0rem;
+  transition: all 0.2s;
+  outline:none!important;
+}
+
+#submitBtn:hover{
+  background-color: gainsboro;
+  color:black;
+  cursor: pointer;
+}

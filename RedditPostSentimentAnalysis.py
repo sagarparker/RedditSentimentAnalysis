@@ -4,18 +4,29 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 import string
+import flask
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score, precision_score, recall_score
+from flask import Flask,request, jsonify
+from flask_cors import CORS
+
+app = flask.Flask(__name__)
+app.config["DEBUG"] = True
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 warnings.filterwarnings('ignore')
 dir_Path = 'D:\\College\\NLP\\SentimentAnalysis'
 os.chdir(dir_Path)
 Postdata = pd.read_csv('RedditData.csv')
 print(Postdata.shape)
+
+
 
 ### Checking Missing values in the csv file
 
@@ -100,8 +111,17 @@ print("Precision : ", precision_score(predictions, DV_test, average = 'weighted'
 print("Recall : ", recall_score(predictions, DV_test, average = 'weighted'))
 
 
-example = ["I am angry"]
-result = model.predict(example)
+# example = ["I am angry"]
+# result = model.predict(example)
 
-print(result)
+@app.route('/getPrediction', methods=['POST'])
+def getResumeDetails():
+    if request.method == 'POST':
+        post_data = {'post':request.json['post']}
+        result = model.predict([post_data["post"]])
+        return str(result)
+
+
+if __name__ == '__main__':
+    app.run()
 
